@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.autos.*;
@@ -19,6 +22,7 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
     /* Controllers */
+    private CommandXboxController controller = new CommandXboxController(0);
     private final Joystick driver = new Joystick(0);
 
     /* Drive Controls */
@@ -32,6 +36,7 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+    private DriverCommands driverCommands = new DriverCommands(s_Swerve);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -45,6 +50,10 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
+
+        controller.a().whileTrue(new InstantCommand(() -> s_Swerve.resetModulesToAbsolute(), s_Swerve));
+
+//        controller.x().whileTrue(new InstantCommand(() -> driverCommands.setDrection(), (Subsystem) driverCommands));
 
         // Configure the button bindings
         configureButtonBindings();

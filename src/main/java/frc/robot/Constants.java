@@ -41,7 +41,7 @@ public final class Constants {
 
         /* Module Gear Ratios */
         public static final double driveGearRatio = chosenModule.driveGearRatio;
-        public static final double angleGearRatio = chosenModule.angleGearRatio;
+        public static final double angleGearRatio = 18.75/1;
 
         /* Motor Inverts */
         public static final InvertedValue angleMotorInvert = chosenModule.angleMotorInvert;
@@ -49,6 +49,7 @@ public final class Constants {
 
         /* Angle Encoder Invert */
         public static final SensorDirectionValue cancoderInvert = chosenModule.cancoderInvert;
+
 
         /* Swerve Current Limiting */
         public static final int angleCurrentLimit = 25;
@@ -102,7 +103,7 @@ public final class Constants {
             public static final int driveMotorID = 11;
             public static final int angleMotorID = 12;
             public static final int canCoderID = 13;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(0);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(52);
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -113,7 +114,7 @@ public final class Constants {
             public static final int driveMotorID = 41;
             public static final int angleMotorID = 42;
             public static final int canCoderID = 43;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-68);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-64.5);
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -124,10 +125,11 @@ public final class Constants {
             public static final int driveMotorID = 21;
             public static final int angleMotorID = 22;
             public static final int canCoderID = 23;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(95.0);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(96);
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
+
 
         /* Back Right Module - Module 3 */
         // A2
@@ -135,7 +137,7 @@ public final class Constants {
             public static final int driveMotorID = 31;
             public static final int angleMotorID = 32;
             public static final int canCoderID = 33;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(179.0);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(175.5);
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
