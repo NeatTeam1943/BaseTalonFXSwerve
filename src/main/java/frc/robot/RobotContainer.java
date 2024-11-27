@@ -23,7 +23,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
     /* Controllers */
     private CommandXboxController controller = new CommandXboxController(0);
-    private final Joystick driver = new Joystick(0);
+    private final Joystick driver = new Joystick(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -51,7 +51,7 @@ public class RobotContainer {
             )
         );
 
-        controller.a().whileTrue(new InstantCommand(() -> s_Swerve.resetModulesToAbsolute(), s_Swerve));
+        controller.a().whileTrue(new RunCommand(() -> driverCommands.newHeading(), s_Swerve));
 
 //        controller.x().whileTrue(new InstantCommand(() -> driverCommands.setDrection(), (Subsystem) driverCommands));
 
