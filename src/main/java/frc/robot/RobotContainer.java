@@ -50,8 +50,8 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
-
-        controller.a().whileTrue(new RunCommand(() -> driverCommands.newHeading(), s_Swerve));
+            
+        controller.a().whileTrue(new RunCommand(() -> s_Swerve, s_Swerve));
 
 //        controller.x().whileTrue(new InstantCommand(() -> driverCommands.setDrection(), (Subsystem) driverCommands));
 
