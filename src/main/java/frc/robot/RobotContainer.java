@@ -51,7 +51,6 @@ public class RobotContainer {
             )
         );
             
-        controller.a().whileTrue(new RunCommand(() -> s_Swerve, s_Swerve));
 
 //        controller.x().whileTrue(new InstantCommand(() -> driverCommands.setDrection(), (Subsystem) driverCommands));
 

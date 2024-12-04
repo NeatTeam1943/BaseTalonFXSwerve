@@ -49,7 +49,7 @@ public class Swerve extends SubsystemBase {
                                 : new ChassisSpeeds(
                                     translation.getX(), 
                                     translation.getY(), 
-                                    rotation)
+                                    rotation)                          
                                 );
         SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
 
@@ -78,7 +78,7 @@ public class Swerve extends SubsystemBase {
     public SwerveModulePosition[] getModulePositions(){
         SwerveModulePosition[] positions = new SwerveModulePosition[4];
         for(SwerveModule mod : mSwerveMods){
-            positions[mod.moduleNumber] = mod.getPosition();
+            positions[mod.moduleNumber] = mod.getPosition();                                                                                                                                                                                                                                            
         }
         return positions;
     }
