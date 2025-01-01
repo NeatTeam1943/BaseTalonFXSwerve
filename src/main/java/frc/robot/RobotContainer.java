@@ -3,13 +3,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -22,22 +23,23 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
     /* Controllers */
-    private CommandXboxController controller = new CommandXboxController(0);
-    private final Joystick driver = new Joystick(1);
+    // private Joystick driveJoystick = new Joystick(1);
+    // private Joystick rotJoystick = new Joystick(1);
+
+    public CommandXboxController controller = new CommandXboxController(0);
+    private final Joystick driver = new Joystick(0);
 
     /* Drive Controls */
+    //  private final int translationAxis = (int)driveJoystick.getRawAxis(1);
+    // private final int strafeAxis = (int)driveJoystick.getRawAxis(1);
+    // private final int rotationAxis = (int)rotJoystick.getRawAxis(4);
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
     private final int rotationAxis = XboxController.Axis.kRightX.value;
 
-    /* Driver Buttons */
-    private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-
     /* Subsystems */
-    private final Swerve s_Swerve = new Swerve();
-    private DriverCommands driverCommands = new DriverCommands(s_Swerve);
-
+    public  final Swerve s_Swerve = new Swerve();
+    private DriverCommands driverCommands = new DriverCommands(s_Swerve);   
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -47,13 +49,10 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(translationAxis), 
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean()
+                () -> controller.leftBumper().getAsBoolean()
             )
         );
             
-
-//        controller.x().whileTrue(new InstantCommand(() -> driverCommands.setDrection(), (Subsystem) driverCommands));
-
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -66,7 +65,8 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         /* Driver Buttons */
-        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+
+        controller.a().whileTrue(new RunCommand(() -> s_Swerve.zeroHeading(), s_Swerve));
     }
 
     /**
@@ -78,4 +78,4 @@ public class RobotContainer {
         // An ExampleCommand will run in autonomous
         return new exampleAuto(s_Swerve);
     }
-}
+}   
